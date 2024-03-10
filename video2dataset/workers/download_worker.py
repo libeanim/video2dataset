@@ -23,6 +23,7 @@ from video2dataset.subsamplers import (
     NoOpSubsampler,
     ResolutionSubsampler,
     AudioRateSubsampler,
+    ClipEmbeddingSubsampler,
 )
 
 
@@ -87,6 +88,8 @@ class DownloadWorker:
             video_subsamplers.append(ResolutionSubsampler(**self.config["subsampling"]["ResolutionSubsampler"]["args"]))
         if "FrameSubsampler" in self.config["subsampling"]:
             video_subsamplers.append(FrameSubsampler(**self.config["subsampling"]["FrameSubsampler"]["args"]))
+        if "ClipEmbeddingSubsampler" in self.config["subsampling"]:
+            video_subsamplers.append(ClipEmbeddingSubsampler(**self.config["subsampling"]["ClipEmbeddingSubsampler"]["args"]))
 
         audio_subsamplers: List[Any] = []
         if "AudioRateSubsampler" in self.config["subsampling"]:
